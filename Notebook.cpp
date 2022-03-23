@@ -45,6 +45,9 @@ void Notebook::write(int page, int row, int column, Direction direction, const s
     if (negative_num(column)) {
         throw std::invalid_argument("Column number start from 0 !!");
     }
+    if (invalid_num(column)){
+        throw std::invalid_argument("There are only 100 columns!!");
+    }
 
 
     cout << text << endl;
@@ -69,6 +72,10 @@ Notebook::read(int page, int row, int column, Direction direction, int length) {
         throw std::invalid_argument("Negative length to reading !!");
     }
 
+    if (invalid_num(column)){
+        throw std::invalid_argument("There are only 100 columns!!");
+    }
+
 
     return " you are right !";
 
@@ -85,10 +92,13 @@ Notebook::erase(int page, int row, int column, Direction direction, int length) 
     if (negative_num(column)) {
         throw std::invalid_argument("Column number start from 0 !!");
     }
-
     if (negative_num(length)) {
         throw std::invalid_argument("Negative length for erasure !!");
     }
+    if (invalid_num(column) || invalid_num(length)){
+        throw std::invalid_argument("No more than 100!!");
+    }
+
 }
 
 void Notebook::show(int page_number) {
