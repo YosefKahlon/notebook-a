@@ -72,12 +72,12 @@ Notebook::read(int page, int row, int column, Direction direction, int length) {
         throw std::invalid_argument("Negative length to reading !!");
     }
 
-    if (invalid_num(column)){
-        throw std::invalid_argument("There are only 100 columns!!");
+    if (invalid_num(column) || invalid_num(length)){
+        throw std::invalid_argument("No more than 100!!");
     }
 
 
-    return " you are right !";
+    return "";
 
 }
 
