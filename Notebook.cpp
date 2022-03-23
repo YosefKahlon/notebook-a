@@ -12,19 +12,23 @@ using namespace ariel;
 
 
 bool negative_num(int num) {
+    bool ans = false;
+    const int x = 0;
+    if (num < x) {
+        ans = true;
+    }
+    return ans;
 
-    if (num < 0) {
-        return true;
-    } else {
-        return false;
-    }
 }
-bool invalid_num(int num){
-    if (num > 100) {
-        return true;
-    } else {
-        return false;
+
+bool invalid_num(int num) {
+    bool ans = false;
+    const int x = 100;
+    if (num > x) {
+        ans = true;
     }
+    return ans;
+
 }
 
 
@@ -45,7 +49,7 @@ void Notebook::write(int page, int row, int column, Direction direction, const s
     if (negative_num(column)) {
         throw std::invalid_argument("Column number start from 0 !!");
     }
-    if (invalid_num(column) || invalid_num(len)){
+    if (invalid_num(column) || invalid_num(len)) {
         throw std::invalid_argument("No more than 100!!");
     }
 
@@ -72,7 +76,7 @@ Notebook::read(int page, int row, int column, Direction direction, int length) {
         throw std::invalid_argument("Negative length to reading !!");
     }
 
-    if (invalid_num(column) || invalid_num(length)){
+    if (invalid_num(column) || invalid_num(length)) {
         throw std::invalid_argument("No more than 100!!");
     }
 
@@ -95,7 +99,7 @@ Notebook::erase(int page, int row, int column, Direction direction, int length) 
     if (negative_num(length)) {
         throw std::invalid_argument("Negative length for erasure !!");
     }
-    if (invalid_num(column) || invalid_num(length)){
+    if (invalid_num(column) || invalid_num(length)) {
         throw std::invalid_argument("No more than 100!!");
     }
 
