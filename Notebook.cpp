@@ -45,8 +45,8 @@ void Notebook::write(int page, int row, int column, Direction direction, const s
     if (negative_num(column)) {
         throw std::invalid_argument("Column number start from 0 !!");
     }
-    if (invalid_num(column)){
-        throw std::invalid_argument("There are only 100 columns!!");
+    if (invalid_num(column) || invalid_num(len)){
+        throw std::invalid_argument("No more than 100!!");
     }
 
 

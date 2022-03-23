@@ -110,19 +110,25 @@ TEST_CASE ("3") {
     test.erase(10, 10, 10, Direction::Vertical, 3);
             CHECK(test.read(10, 10, 10, Direction::Vertical, 4) == "~~~T");
 
-
     test.write(50, 50, 50, Direction::Vertical, "TEST");
             CHECK(test.read(50, 50, 50, Direction::Horizontal, 4) == "T___");
 
     test.write(60, 60, 60, Direction::Horizontal, "TEST");
             CHECK(test.read(60, 60, 60, Direction::Vertical, 4) == "T___");
 
+    test.write(70, 60, 60, Direction::Horizontal, "TEST TEST");
+            CHECK(test.read(70, 60, 60, Direction::Vertical, 8) == "TEST_TES");
 
+    test.erase(70, 60, 64, Direction::Vertical, 1);
+            CHECK(test.read(70, 60, 64, Direction::Vertical, 8) == "TEST~TEST");
+    test.erase(70, 60, 60, Direction::Vertical, 1);
+    test.erase(70, 60, 68, Direction::Vertical, 1);
+            CHECK(test.read(70, 60, 64, Direction::Vertical, 8) == "~EST~TES~");
 }
 
 TEST_CASE ("4") {
     Notebook test;
-    
+
     SUBCASE("can't write here ") {
         test.write(11, 11, 11, Direction::Vertical, "TEST");
         CHECK_THROWS(test.write(11, 11, 12, Direction::Vertical, "TEST"));
